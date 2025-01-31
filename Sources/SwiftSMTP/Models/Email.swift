@@ -122,15 +122,19 @@ extension Email {
         /// The data of the attachment.
         public var data: Data
 
+        /// The data of the attachment.
+        public var cid: String?                                                     
+
         /// Creates a new email attachment with the given parameters.
         /// - Parameters:
         ///   - name: The (file) name of the attachment.
         ///   - contentType: The content type of the attachment.
         ///   - data: The data of the attachment.
-        public init(name: String, contentType: String, data: Data) {
+        public init(name: String, contentType: String, data: Data, cid: String? = nil) {
             self.name = name
             self.contentType = contentType
             self.data = data
+            self.cid = cid
         }
 
         /// Creates a new email attachment with the given parameters.
