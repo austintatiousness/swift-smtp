@@ -122,7 +122,7 @@ extension Email {
         /// The data of the attachment.
         public var data: Data
 
-        /// The data of the attachment.
+        /// The cid of the attachment.
         public var cid: String?                                                     
 
         /// Creates a new email attachment with the given parameters.
