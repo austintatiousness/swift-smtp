@@ -52,11 +52,16 @@ struct SMTPRequestEncoder: MessageToByteEncoder {
                                    separatedWith boundary: String) -> String {
         assert(!attachments.isEmpty)
         return attachments.lazy.map {
-            """
+            var header = """
             \(contentTypeHeaders($0.contentType, usesBase64: true))\r\n\
             Content-Disposition: attachment; filename="\($0.name)"\r\n\r\n\
             \($0.data.base64EncodedString(options: base64EncodingOptions))\r\n
             """
+            if let cid = $0.cid {
+               header += "Content-ID: <\(cid)>\r\n"
+            }
+            return header
+            
         }.joined(separator: "\r\n--\(boundary)\r\n")
     }
 
